@@ -354,6 +354,17 @@ section { padding: 70px 0; }
 }
 .hero-badge i { color: var(--primary); }
 
+.hero-car-wrap {
+  margin-top: 36px;
+}
+.hero-car-img {
+  width: 100%;
+  max-width: 600px;
+  display: block;
+  border-radius: 18px;
+  filter: drop-shadow(0 12px 40px rgba(245,166,35,0.30));
+}
+
 /* Booking Card */
 .booking-card {
   background: var(--white);
@@ -505,16 +516,38 @@ section { padding: 70px 0; }
 .service-card {
   background: var(--white);
   border-radius: 12px;
-  padding: 36px 28px;
+  padding: 0 0 28px;
   text-align: center;
   box-shadow: var(--shadow);
   transition: transform var(--transition), box-shadow var(--transition);
   border-bottom: 4px solid transparent;
+  overflow: hidden;
 }
 .service-card:hover {
   transform: translateY(-6px);
   box-shadow: 0 12px 36px rgba(0,0,0,0.14);
   border-bottom-color: var(--primary);
+}
+
+/* Service card image */
+.sc-img-wrap {
+  width: 100%;
+  height: 160px;
+  overflow: hidden;
+  border-radius: 12px 12px 0 0;
+  margin-bottom: 22px;
+}
+.sc-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 40%;
+  display: block;
+  transition: transform 0.45s ease;
+  background: #111;
+}
+.service-card:hover .sc-img {
+  transform: scale(1.07);
 }
 .service-icon {
   width: 72px;
@@ -528,8 +561,8 @@ section { padding: 70px 0; }
   color: var(--primary);
   margin: 0 auto 20px;
 }
-.service-card h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 10px; color: var(--secondary); }
-.service-card p { font-size: 0.93rem; color: var(--text-light); line-height: 1.7; }
+.service-card h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 10px; color: var(--secondary); padding: 0 20px; }
+.service-card p { font-size: 0.93rem; color: var(--text-light); line-height: 1.7; padding: 0 20px; }
 
 /* ============================================
    ROUTES
