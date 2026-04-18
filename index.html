@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MLSCABSERVICES – Taxi Service in Kanpur | Book Cab Online</title>
+  <meta name="description" content="Book reliable taxi service in Kanpur, Uttar Pradesh. MLSCABSERVICES offers local cab, outstation taxi, and airport transfers. Call +917379164736 or WhatsApp to book instantly." />
+  <meta name="keywords" content="taxi service in Kanpur, cab booking Kanpur, Kanpur to Lucknow taxi, outstation cab Kanpur, airport cab Kanpur, MLSCABSERVICES" />
+  <meta name="robots" content="index, follow" />
+  <meta property="og:title" content="MLSCABSERVICES – Taxi Service in Kanpur" />
+  <meta property="og:description" content="Affordable & reliable cab service in Kanpur. Available 24/7. Book via Call or WhatsApp." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://mlscabservices.in/index.html" />
+  <link rel="canonical" href="https://mlscabservices.in/index.html" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+
+  <!-- Header placeholder -->
+  <div id="site-header"></div>
+
+  <!-- ========== HERO ========== -->
+  <section class="hero" aria-label="Book your cab">
+    <div class="container">
+      <div class="hero-inner">
+
+        <div class="hero-content">
+          <h1>Book Your <span>Cab Instantly</span> in Kanpur</h1>
+          <p>Fast, affordable &amp; reliable taxi service across Kanpur and beyond. Available 24/7 for local trips, outstation journeys, and airport transfers.</p>
+          <div class="hero-badges">
+            <span class="hero-badge"><i class="fas fa-clock"></i> 24/7 Available</span>
+            <span class="hero-badge"><i class="fas fa-shield-alt"></i> Safe &amp; Verified</span>
+            <span class="hero-badge"><i class="fas fa-rupee-sign"></i> Best Fares</span>
+          </div>
+        </div>
+
+        <!-- Booking Card -->
+        <div class="booking-card">
+          <h3><i class="fas fa-taxi" style="color:var(--primary);margin-right:8px;"></i>Book Your Ride</h3>
+
+          <div class="form-group">
+            <label for="service-type"><i class="fas fa-concierge-bell input-icon" style="left:12px;"></i>Service Type</label>
+            <select id="service-type" aria-label="Select service type" style="width:100%;padding:12px 16px 12px 42px;border:2px solid var(--border);border-radius:var(--radius);background:var(--white);font-size:0.95rem;">
+              <option value="Local">Local Cab</option>
+              <option value="Outstation" selected>Outstation</option>
+              <option value="Airport">Airport Transfer</option>
+            </select>
+          </div>
+
+          <div class="form-group" style="position:relative;">
+            <label for="pickup"><i class="fas fa-map-marker-alt input-icon"></i>Pickup Location</label>
+            <input type="text" id="pickup" placeholder="Enter pickup location" autocomplete="off" />
+            <div id="pickup-dropdown" class="autocomplete-dropdown" role="listbox"></div>
+          </div>
+
+          <div class="form-group" style="position:relative;">
+            <label for="drop"><i class="fas fa-flag-checkered input-icon"></i>Drop Location</label>
+            <input type="text" id="drop" placeholder="Enter drop location" autocomplete="off" />
+            <div id="drop-dropdown" class="autocomplete-dropdown" role="listbox"></div>
+          </div>
+
+          <button class="btn btn-whatsapp" onclick="sendWhatsApp('pickup','drop')" aria-label="Book via WhatsApp">
+            <i class="fab fa-whatsapp"></i> Book via WhatsApp
+          </button>
+
+          <div class="booking-divider">or</div>
+
+          <a href="tel:+917379164736" class="btn btn-primary" style="width:100%;justify-content:center;">
+            <i class="fas fa-phone-alt"></i> Call to Book
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SERVICES ========== -->
+  <section class="services-section" id="services" aria-label="Our services">
+    <div class="container">
+      <div class="section-heading">
+        <span class="tag">What We Offer</span>
+        <h2>Our Taxi Services in Kanpur</h2>
+        <p>From quick local rides to long outstation trips — we've got you covered.</p>
+      </div>
+
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon"><i class="fas fa-city"></i></div>
+          <h3>Local Cab Service</h3>
+          <p>Affordable hourly and point-to-point cab hire within Kanpur city. AC cabs for all budgets.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon"><i class="fas fa-road"></i></div>
+          <h3>Outstation Taxi</h3>
+          <p>Comfortable one-way and round-trip outstation rides to Lucknow, Delhi, Agra, Ayodhya &amp; more.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon"><i class="fas fa-plane-departure"></i></div>
+          <h3>Airport Transfers</h3>
+          <p>Timely pickup and drop to Kanpur Airport (KNU) and Lucknow International Airport (LKO).</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon"><i class="fas fa-briefcase"></i></div>
+          <h3>Corporate Cab</h3>
+          <p>Dedicated cab service for businesses — regular employee transport and executive travel.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon"><i class="fas fa-map-marked-alt"></i></div>
+          <h3>Tour Packages</h3>
+          <p>Curated day tour and multi-day packages to temples, hill stations, and tourist spots in UP.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon"><i class="fas fa-train"></i></div>
+          <h3>Railway Station Pickup</h3>
+          <p>On-time pickup and drop from Kanpur Central and other railway stations — no waiting.</p>
+        </div>
+      </div>
+
+      <div class="text-center mt-32">
+        <a href="services.html" class="btn btn-primary">View All Services</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== POPULAR ROUTES ========== -->
+  <section class="routes-section" id="routes" aria-label="Popular routes">
+    <div class="container">
+      <div class="section-heading">
+        <span class="tag">Popular Routes</span>
+        <h2>Kanpur Outstation Cab Routes</h2>
+        <p>Transparent pricing for our most-booked routes. Click any route to book instantly.</p>
+      </div>
+
+      <div class="routes-grid">
+        <div class="route-card">
+          <div class="route-from-to">
+            <i class="fas fa-circle" style="font-size:0.7rem;color:#25d366;"></i>
+            Kanpur
+            <i class="fas fa-long-arrow-alt-right"></i>
+            Lucknow
+          </div>
+          <div class="route-details">
+            <span class="route-detail"><i class="fas fa-road"></i> 80 km</span>
+            <span class="route-detail"><i class="fas fa-clock"></i> ~2 hrs</span>
+          </div>
+          <div class="route-price">₹1,200 <span>onwards</span></div>
+          <button class="btn btn-whatsapp mt-16" style="padding:10px 20px;font-size:0.88rem;" onclick="sendWhatsAppRoute('Kanpur','Lucknow')">
+            <i class="fab fa-whatsapp"></i> Book Now
+          </button>
+        </div>
+
+        <div class="route-card">
+          <div class="route-from-to">
+            <i class="fas fa-circle" style="font-size:0.7rem;color:#25d366;"></i>
+            Kanpur
+            <i class="fas fa-long-arrow-alt-right"></i>
+            Ayodhya
+          </div>
+          <div class="route-details">
+            <span class="route-detail"><i class="fas fa-road"></i> 165 km</span>
+            <span class="route-detail"><i class="fas fa-clock"></i> ~3.5 hrs</span>
+          </div>
+          <div class="route-price">₹2,500 <span>onwards</span></div>
+          <button class="btn btn-whatsapp mt-16" style="padding:10px 20px;font-size:0.88rem;" onclick="sendWhatsAppRoute('Kanpur','Ayodhya')">
+            <i class="fab fa-whatsapp"></i> Book Now
+          </button>
+        </div>
+
+        <div class="route-card">
+          <div class="route-from-to">
+            <i class="fas fa-circle" style="font-size:0.7rem;color:#25d366;"></i>
+            Kanpur
+            <i class="fas fa-long-arrow-alt-right"></i>
+            Delhi
+          </div>
+          <div class="route-details">
+            <span class="route-detail"><i class="fas fa-road"></i> 465 km</span>
+            <span class="route-detail"><i class="fas fa-clock"></i> ~7 hrs</span>
+          </div>
+          <div class="route-price">₹5,500 <span>onwards</span></div>
+          <button class="btn btn-whatsapp mt-16" style="padding:10px 20px;font-size:0.88rem;" onclick="sendWhatsAppRoute('Kanpur','Delhi')">
+            <i class="fab fa-whatsapp"></i> Book Now
+          </button>
+        </div>
+
+        <div class="route-card">
+          <div class="route-from-to">
+            <i class="fas fa-circle" style="font-size:0.7rem;color:#25d366;"></i>
+            Kanpur
+            <i class="fas fa-long-arrow-alt-right"></i>
+            Agra
+          </div>
+          <div class="route-details">
+            <span class="route-detail"><i class="fas fa-road"></i> 295 km</span>
+            <span class="route-detail"><i class="fas fa-clock"></i> ~5 hrs</span>
+          </div>
+          <div class="route-price">₹3,800 <span>onwards</span></div>
+          <button class="btn btn-whatsapp mt-16" style="padding:10px 20px;font-size:0.88rem;" onclick="sendWhatsAppRoute('Kanpur','Agra')">
+            <i class="fab fa-whatsapp"></i> Book Now
+          </button>
+        </div>
+
+        <div class="route-card">
+          <div class="route-from-to">
+            <i class="fas fa-circle" style="font-size:0.7rem;color:#25d366;"></i>
+            Kanpur
+            <i class="fas fa-long-arrow-alt-right"></i>
+            Varanasi
+          </div>
+          <div class="route-details">
+            <span class="route-detail"><i class="fas fa-road"></i> 330 km</span>
+            <span class="route-detail"><i class="fas fa-clock"></i> ~5.5 hrs</span>
+          </div>
+          <div class="route-price">₹4,200 <span>onwards</span></div>
+          <button class="btn btn-whatsapp mt-16" style="padding:10px 20px;font-size:0.88rem;" onclick="sendWhatsAppRoute('Kanpur','Varanasi')">
+            <i class="fab fa-whatsapp"></i> Book Now
+          </button>
+        </div>
+
+        <div class="route-card">
+          <div class="route-from-to">
+            <i class="fas fa-circle" style="font-size:0.7rem;color:#25d366;"></i>
+            Kanpur
+            <i class="fas fa-long-arrow-alt-right"></i>
+            Prayagraj
+          </div>
+          <div class="route-details">
+            <span class="route-detail"><i class="fas fa-road"></i> 205 km</span>
+            <span class="route-detail"><i class="fas fa-clock"></i> ~3.5 hrs</span>
+          </div>
+          <div class="route-price">₹2,800 <span>onwards</span></div>
+          <button class="btn btn-whatsapp mt-16" style="padding:10px 20px;font-size:0.88rem;" onclick="sendWhatsAppRoute('Kanpur','Prayagraj')">
+            <i class="fab fa-whatsapp"></i> Book Now
+          </button>
+        </div>
+      </div>
+
+      <div class="text-center mt-32">
+        <a href="routes.html" class="btn btn-dark">View All Routes &amp; Pricing</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== TESTIMONIALS ========== -->
+  <section class="testimonials-section" aria-label="Customer reviews">
+    <div class="container">
+      <div class="section-heading">
+        <span class="tag">Reviews</span>
+        <h2>What Our Customers Say</h2>
+        <p>Thousands of happy passengers across Kanpur trust MLSCABSERVICES.</p>
+      </div>
+
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="testimonial-text">"Excellent service! Booked a cab from Kanpur to Lucknow through WhatsApp and the driver arrived on time. Very clean car and polite driver."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">R</div>
+            <div>
+              <h4>Rahul Sharma</h4>
+              <p>Kanpur, UP</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="testimonial-text">"Got airport transfer to Lucknow LKO airport early morning. Driver was punctual and professional. Best rates in the city. Highly recommended!"</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">P</div>
+            <div>
+              <h4>Priya Verma</h4>
+              <p>Swarup Nagar, Kanpur</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="testimonial-text">"Used MLSCABSERVICES for a Kanpur to Ayodhya trip. Fare was very reasonable. Will definitely use again for outstation travel."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">A</div>
+            <div>
+              <h4>Anand Mishra</h4>
+              <p>Kidwai Nagar, Kanpur</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CTA ========== -->
+  <section class="cta-section" aria-label="Call to action">
+    <div class="container">
+      <h2>Ready to Book Your Cab?</h2>
+      <p>Call us or send a WhatsApp message — we'll confirm your booking in minutes.</p>
+      <div class="cta-buttons">
+        <a href="tel:+917379164736" class="btn btn-dark">
+          <i class="fas fa-phone-alt"></i> +91 73791 64736
+        </a>
+        <a href="https://wa.me/917379164736" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
+          <i class="fab fa-whatsapp"></i> WhatsApp Now
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer placeholder -->
+  <div id="site-footer"></div>
+
+  <!-- Sticky Floating Buttons -->
+  <a href="tel:+917379164736" class="sticky-call" title="Call MLSCABSERVICES" aria-label="Call us">
+    <i class="fas fa-phone-alt"></i>
+  </a>
+  <a href="https://wa.me/917379164736" target="_blank" rel="noopener noreferrer" class="sticky-whatsapp" title="WhatsApp MLSCABSERVICES" aria-label="WhatsApp us">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <script src="js/include.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

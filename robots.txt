@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+
+Disallow: /components/
+
+Sitemap: https://mlscabservices.in/sitemap.xml
