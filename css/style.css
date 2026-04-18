@@ -60,14 +60,19 @@ button { cursor: pointer; border: none; outline: none; }
   padding: 14px 0;
 }
 
-.logo {
-  font-size: 1.5rem;
-  font-weight: 800;
-  color: var(--primary);
-  letter-spacing: 1px;
+.logo-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.logo span { color: var(--white); }
+.logo-img {
+  height: 50px;
+  width: auto;
+  display: block;
+}
+
+.footer-brand .logo-img { height: 45px; }
 
 /* Nav */
 .nav-menu {
