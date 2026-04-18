@@ -35,41 +35,185 @@
           </div>
         </div>
 
-        <!-- Booking Card -->
-        <div class="booking-card">
-          <h3><i class="fas fa-taxi" style="color:var(--primary);margin-right:8px;"></i>Book Your Ride</h3>
+        <!-- ===== PREMIUM BOOKING CARD ===== -->
+        <div class="bk-card" id="booking-card">
 
-          <div class="form-group">
-            <label for="service-type"><i class="fas fa-concierge-bell input-icon" style="left:12px;"></i>Service Type</label>
-            <select id="service-type" aria-label="Select service type" style="width:100%;padding:12px 16px 12px 42px;border:2px solid var(--border);border-radius:var(--radius);background:var(--white);font-size:0.95rem;">
-              <option value="Local">Local Cab</option>
-              <option value="Outstation" selected>Outstation</option>
-              <option value="Airport">Airport Transfer</option>
-            </select>
+          <!-- Top Tabs -->
+          <div class="bk-tabs" role="tablist" aria-label="Service type">
+            <button class="bk-tab active" role="tab" aria-selected="true"  data-tab="outstation">
+              <i class="fas fa-road"></i> Outstation
+            </button>
+            <button class="bk-tab" role="tab" aria-selected="false" data-tab="local">
+              <i class="fas fa-city"></i> Local
+            </button>
+            <button class="bk-tab" role="tab" aria-selected="false" data-tab="airport">
+              <i class="fas fa-plane-departure"></i> Airport
+            </button>
           </div>
 
-          <div class="form-group" style="position:relative;">
-            <label for="pickup"><i class="fas fa-map-marker-alt input-icon"></i>Pickup Location</label>
-            <input type="text" id="pickup" placeholder="Enter pickup location" autocomplete="off" />
-            <div id="pickup-dropdown" class="autocomplete-dropdown" role="listbox"></div>
+          <!-- ---- OUTSTATION PANEL ---- -->
+          <div class="bk-panel active" id="panel-outstation" role="tabpanel">
+            <div class="bk-toggle" role="group" aria-label="Trip type">
+              <button class="bk-tog active" data-trip="One Way">One Way</button>
+              <button class="bk-tog" data-trip="Round Trip">Round Trip</button>
+            </div>
+            <div class="bk-fields">
+
+              <!-- Pickup -->
+              <div class="bk-field" style="position:relative;">
+                <i class="fas fa-map-marker-alt bk-icon green"></i>
+                <input type="text" id="os-pickup" placeholder="From City e.g. 'Kanpur'" autocomplete="off" />
+                <div id="os-pickup-dd" class="autocomplete-dropdown" role="listbox"></div>
+              </div>
+
+              <!-- Drop + extra cities container -->
+              <div id="os-cities-wrap">
+                <div class="bk-field mc-city-field" style="position:relative;" data-index="0">
+                  <i class="fas fa-map-marker-alt bk-icon red"></i>
+                  <input type="text" id="os-drop" placeholder="To City e.g. 'New Delhi'" autocomplete="off" />
+                  <div id="os-drop-dd" class="autocomplete-dropdown" role="listbox"></div>
+                </div>
+              </div>
+              <!-- Add More City link -->
+              <div class="mc-add-row">
+                <button type="button" class="mc-add-btn" id="os-add-city" onclick="addMoreCity()">
+                  <i class="fas fa-plus-circle"></i> +Add More City
+                </button>
+              </div>
+
+              <!-- Date + Time row -->
+              <div class="bk-row">
+                <div class="bk-field-labeled">
+                  <label class="bk-label">Pickup Date</label>
+                  <div class="bk-field">
+                    <i class="fas fa-calendar-alt bk-icon"></i>
+                    <input type="date" id="os-date" />
+                  </div>
+                </div>
+                <div class="bk-field-labeled">
+                  <label class="bk-label">Pickup Time</label>
+                  <div class="bk-field">
+                    <i class="fas fa-clock bk-icon"></i>
+                    <input type="time" id="os-time" />
+                  </div>
+                </div>
+              </div>
+
+              <!-- Return Date row (shown only for Roundtrip) -->
+              <div class="bk-row" id="os-return-row" style="display:none;">
+                <div class="bk-field-labeled">
+                  <label class="bk-label">Return Date</label>
+                  <div class="bk-field">
+                    <i class="fas fa-calendar-alt bk-icon"></i>
+                    <input type="date" id="os-return-date" />
+                  </div>
+                </div>
+                <div class="bk-field-labeled">
+                  <label class="bk-label">Mobile No</label>
+                  <div class="bk-field">
+                    <i class="fas fa-phone-alt bk-icon"></i>
+                    <input type="tel" id="os-mobile-rt" placeholder="Mobile No" maxlength="15" />
+                  </div>
+                </div>
+              </div>
+
+              <!-- Mobile (one-way only) -->
+              <div class="bk-field" id="os-mobile-row">
+                <i class="fas fa-phone-alt bk-icon"></i>
+                <input type="tel" id="os-mobile" placeholder="Mobile Number" maxlength="15" />
+              </div>
+
+            </div>
+            <button class="bk-submit" onclick="bookingSubmit('outstation')">
+              Search Cab &nbsp;<i class="fas fa-arrow-right"></i>
+            </button>
           </div>
 
-          <div class="form-group" style="position:relative;">
-            <label for="drop"><i class="fas fa-flag-checkered input-icon"></i>Drop Location</label>
-            <input type="text" id="drop" placeholder="Enter drop location" autocomplete="off" />
-            <div id="drop-dropdown" class="autocomplete-dropdown" role="listbox"></div>
+          <!-- ---- LOCAL PANEL ---- -->
+          <div class="bk-panel" id="panel-local" role="tabpanel">
+            <div class="bk-fields">
+              <div class="bk-field" style="position:relative;">
+                <i class="fas fa-map-marker-alt bk-icon green"></i>
+                <input type="text" id="lc-city" placeholder="Pickup City (e.g. Kanpur)" autocomplete="off" />
+                <div id="lc-city-dd" class="autocomplete-dropdown" role="listbox"></div>
+              </div>
+              <div class="bk-field">
+                <i class="fas fa-box bk-icon"></i>
+                <select id="lc-package">
+                  <option value="" disabled selected>Select Package</option>
+                  <option>4 hrs / 40 km</option>
+                  <option>8 hrs / 80 km</option>
+                  <option>12 hrs / 120 km</option>
+                </select>
+              </div>
+              <div class="bk-row">
+                <div class="bk-field">
+                  <i class="fas fa-calendar-alt bk-icon"></i>
+                  <input type="date" id="lc-date" />
+                </div>
+                <div class="bk-field">
+                  <i class="fas fa-clock bk-icon"></i>
+                  <input type="time" id="lc-time" />
+                </div>
+              </div>
+              <div class="bk-field">
+                <i class="fas fa-phone-alt bk-icon"></i>
+                <input type="tel" id="lc-mobile" placeholder="Mobile Number" maxlength="15" />
+              </div>
+            </div>
+            <button class="bk-submit" onclick="bookingSubmit('local')">
+              Search Cab &nbsp;<i class="fas fa-arrow-right"></i>
+            </button>
           </div>
 
-          <button class="btn btn-whatsapp" onclick="sendWhatsApp('pickup','drop')" aria-label="Book via WhatsApp">
-            <i class="fab fa-whatsapp"></i> Book via WhatsApp
-          </button>
+          <!-- ---- AIRPORT PANEL ---- -->
+          <div class="bk-panel" id="panel-airport" role="tabpanel">
+            <div class="bk-fields">
+              <div class="bk-field">
+                <i class="fas fa-plane bk-icon"></i>
+                <select id="ap-airport">
+                  <option value="" disabled selected>Select Airport</option>
+                  <option>Kanpur Airport (KNU)</option>
+                  <option>Lucknow Airport (LKO)</option>
+                  <option>Delhi Airport (DEL)</option>
+                  <option>Agra Airport (AGR)</option>
+                  <option>Varanasi Airport (VNS)</option>
+                </select>
+              </div>
+              <div class="bk-field">
+                <i class="fas fa-exchange-alt bk-icon"></i>
+                <select id="ap-direction">
+                  <option value="" disabled selected>Pickup or Drop?</option>
+                  <option>Pickup from Airport</option>
+                  <option>Drop to Airport</option>
+                </select>
+              </div>
+              <div class="bk-field" style="position:relative;">
+                <i class="fas fa-home bk-icon"></i>
+                <input type="text" id="ap-address" placeholder="Your Home / Hotel Address" autocomplete="off" />
+                <div id="ap-address-dd" class="autocomplete-dropdown" role="listbox"></div>
+              </div>
+              <div class="bk-row">
+                <div class="bk-field">
+                  <i class="fas fa-calendar-alt bk-icon"></i>
+                  <input type="date" id="ap-date" />
+                </div>
+                <div class="bk-field">
+                  <i class="fas fa-clock bk-icon"></i>
+                  <input type="time" id="ap-time" />
+                </div>
+              </div>
+              <div class="bk-field">
+                <i class="fas fa-phone-alt bk-icon"></i>
+                <input type="tel" id="ap-mobile" placeholder="Mobile Number" maxlength="15" />
+              </div>
+            </div>
+            <button class="bk-submit" onclick="bookingSubmit('airport')">
+              Search Cab &nbsp;<i class="fas fa-arrow-right"></i>
+            </button>
+          </div>
 
-          <div class="booking-divider">or</div>
-
-          <a href="tel:+917379164736" class="btn btn-primary" style="width:100%;justify-content:center;">
-            <i class="fas fa-phone-alt"></i> Call to Book
-          </a>
-        </div>
+        </div><!-- /bk-card -->
 
       </div>
     </div>
@@ -317,6 +461,20 @@
   <a href="https://wa.me/917379164736" target="_blank" rel="noopener noreferrer" class="sticky-whatsapp" title="WhatsApp MLSCABSERVICES" aria-label="WhatsApp us">
     <i class="fab fa-whatsapp"></i>
   </a>
+
+  <!-- ===== TIME WARNING MODAL ===== -->
+  <div id="time-modal" class="tm-overlay" role="dialog" aria-modal="true" aria-labelledby="tm-title" style="display:none;">
+    <div class="tm-box">
+      <button class="tm-close" onclick="closeTimeModal()" aria-label="Close">&times;</button>
+      <div class="tm-icon"><i class="fas fa-clock"></i></div>
+      <h3 id="tm-title">Pickup Time Alert</h3>
+      <p id="tm-msg">PickupTime should be greater than 2 hours from current time!</p>
+      <p class="tm-sub">Please call our Customer Care no.</p>
+      <a href="tel:+917379164736" class="tm-call-btn">
+        <i class="fas fa-phone-alt"></i> +91-7379164736
+      </a>
+    </div>
+  </div>
 
   <script src="js/include.js"></script>
   <script src="js/main.js"></script>
