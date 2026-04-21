@@ -42,12 +42,14 @@
     btn.addEventListener('click', () => {
       btn.classList.toggle('open');
       menu.classList.toggle('open');
+      document.body.classList.toggle('nav-open');
     });
     // Close on link click
     menu.querySelectorAll('a').forEach(a => {
       a.addEventListener('click', () => {
         btn.classList.remove('open');
         menu.classList.remove('open');
+        document.body.classList.remove('nav-open');
       });
     });
   }

@@ -241,7 +241,8 @@ button { cursor: pointer; border: none; outline: none; }
   justify-content: center;
   font-size: 1.5rem;
   box-shadow: 0 4px 16px rgba(245,166,35,0.5);
-  transition: transform var(--transition);
+  transition: transform var(--transition), opacity 0.2s ease;
+  opacity: 1;
 }
 .sticky-call:hover { transform: scale(1.1); }
 
@@ -260,7 +261,8 @@ button { cursor: pointer; border: none; outline: none; }
   justify-content: center;
   font-size: 1.5rem;
   box-shadow: 0 4px 16px rgba(37,211,102,0.5);
-  transition: transform var(--transition);
+  transition: transform var(--transition), opacity 0.2s ease;
+  opacity: 1;
 }
 .sticky-whatsapp:hover { transform: scale(1.1); }
 
@@ -936,20 +938,20 @@ section { padding: 70px 0; }
 .highlight { color: var(--primary); }
 
 /* ============================================
-   RESPONSIVE - TABLET
+   RESPONSIVE — TABLET  ≤ 992px
    ============================================ */
 @media (max-width: 992px) {
-  .hero-inner { grid-template-columns: 1fr; gap: 40px; }
-  .hero-content h1 { font-size: 2.2rem; }
-  .about-grid { grid-template-columns: 1fr; }
-  .contact-grid { grid-template-columns: 1fr; }
-  .form-row { grid-template-columns: 1fr; }
+  .about-grid    { grid-template-columns: 1fr; }
+  .contact-grid  { grid-template-columns: 1fr; }
+  .form-row      { grid-template-columns: 1fr; }
 }
 
 /* ============================================
-   RESPONSIVE - MOBILE
+   RESPONSIVE — HAMBURGER NAV  ≤ 900px
+   (prevents cramped nav on tablets)
    ============================================ */
-@media (max-width: 768px) {
+@media (max-width: 900px) {
+  /* Navigation → hamburger */
   .nav-menu {
     display: none;
     position: absolute;
@@ -962,42 +964,128 @@ section { padding: 70px 0; }
     gap: 0;
     padding: 12px 0;
     box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+    z-index: 998;
   }
   .nav-menu.open { display: flex; }
   .nav-menu a {
-    padding: 13px 24px;
+    padding: 14px 24px;
     border-bottom: 1px solid rgba(255,255,255,0.06);
+    font-size: 0.97rem;
   }
-  .btn-call-nav { margin: 10px 16px; text-align: center; border-radius: 8px; }
+  .btn-call-nav { margin: 10px 16px; text-align: center; border-radius: 8px; display: block; }
   .hamburger { display: flex; }
-  .site-header { position: sticky; }
 
+  /* Hero → single column */
   .hero { padding: 50px 0 60px; }
+  .hero-inner { grid-template-columns: 1fr; gap: 36px; }
+  .hero-content h1 { font-size: 2.2rem; }
+  .hero-content p  { font-size: 1rem; }
+
+  /* Booking card full-width when stacked */
+  .bk-card { max-width: 100%; }
+  .bk-tab  { font-size: 0.75rem; padding: 12px 4px; }
+
+  /* Page-hero */
+  .page-hero h1              { font-size: 2rem; }
+  .page-hero .container      { max-width: 100%; text-align: center; }
+  .page-hero-img             { display: none; }
+}
+
+/* ============================================
+   RESPONSIVE — MOBILE  ≤ 768px
+   ============================================ */
+@media (max-width: 768px) {
+  .hero { padding: 40px 0 50px; }
   .hero-content h1 { font-size: 1.8rem; }
   .booking-card { padding: 24px 20px; }
 
-  section { padding: 50px 0; }
+  section { padding: 48px 0; }
   .section-heading h2 { font-size: 1.6rem; }
+  .section-heading p  { font-size: 0.95rem; }
 
-  .page-hero h1 { font-size: 1.8rem; }
-  .page-hero .container { max-width: 100%; text-align: center; }
-  .page-hero-img { display: none; }
+  .page-hero         { padding: 36px 0; }
+  .page-hero h1      { font-size: 1.75rem; }
 
-  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .footer-grid   { grid-template-columns: 1fr 1fr; }
   .footer-bottom { flex-direction: column; text-align: center; }
 
   .contact-form-card { padding: 24px 20px; }
 
+  .cta-section   { padding: 48px 0; }
   .cta-section h2 { font-size: 1.6rem; }
 
+  .about-visual { padding: 32px 20px; }
+  .stat-box     { padding: 16px 12px; }
+
   .pricing-table th, .pricing-table td { padding: 10px 12px; font-size: 0.88rem; }
+
+  /* Slightly smaller sticky buttons on mobile */
+  .sticky-call      { width: 50px; height: 50px; font-size: 1.25rem; bottom: 18px; left: 16px; }
+  .sticky-whatsapp  { width: 50px; height: 50px; font-size: 1.25rem; bottom: 18px; right: 16px; }
 }
 
-@media (max-width: 480px) {
-  .footer-grid { grid-template-columns: 1fr; }
-  .stats-row { gap: 12px; }
-  .hero-badges { gap: 10px; }
-  .routes-grid { grid-template-columns: 1fr; }
+/* ============================================
+   RESPONSIVE — SMALL MOBILE  ≤ 540px
+   ============================================ */
+@media (max-width: 540px) {
+  .hero-content h1 { font-size: 1.65rem; }
+  .hero-badges     { gap: 8px; }
+  .hero-badge      { font-size: 0.78rem; padding: 6px 12px; }
+
+  .footer-grid        { grid-template-columns: 1fr; }
+  .routes-grid        { grid-template-columns: 1fr; }
+  .services-full-grid { grid-template-columns: 1fr; }
+
+  .cta-buttons        { flex-direction: column; align-items: center; }
+  .cta-buttons .btn   { width: 100%; max-width: 300px; justify-content: center; }
+
+  .stats-row { gap: 10px; }
+}
+
+/* ============================================
+   RESPONSIVE — EXTRA SMALL  ≤ 420px
+   ============================================ */
+@media (max-width: 420px) {
+  body { font-size: 15px; }
+
+  .hero-content h1   { font-size: 1.45rem; }
+  .section-heading h2 { font-size: 1.4rem; }
+  .hero-badges  { gap: 6px; }
+  .hero-badge   { font-size: 0.75rem; padding: 5px 10px; }
+
+  .services-grid    { grid-template-columns: 1fr; }
+  .testimonials-grid { grid-template-columns: 1fr; }
+
+  .btn { padding: 11px 22px; font-size: 0.93rem; }
+
+  .bk-panel { padding: 16px; }
+  .bk-row   { grid-template-columns: 1fr; }
+  .bk-tab   { gap: 3px; font-size: 0.7rem; }
+  .tm-box   { padding: 28px 20px 24px; }
+}
+
+/* ============================================
+   RESPONSIVE — MINIMUM  ≤ 360px
+   ============================================ */
+@media (max-width: 360px) {
+  body { font-size: 14px; }
+  .hero-content h1   { font-size: 1.3rem; }
+  .section-heading h2 { font-size: 1.25rem; }
+  .container   { width: 94%; }
+  .sticky-call     { left: 10px; }
+  .sticky-whatsapp { right: 10px; }
+}
+
+/* ============================================
+   NAV OPEN — Hide sticky buttons globally
+   (works on any screen size — no media query)
+   ============================================ */
+body.nav-open .sticky-call,
+body.nav-open .sticky-whatsapp {
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.8);
+  transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
 /* ============================================================
@@ -1327,15 +1415,7 @@ section { padding: 70px 0; }
 }
 .tm-call-btn:hover { background: #000; transform: scale(1.03); }
 
-/* ---- Responsive ---- */
-@media (max-width: 768px) {
-  .bk-card { max-width: 100%; }
-  .bk-tab  { font-size: 0.75rem; padding: 12px 4px; }
-  .bk-row  { grid-template-columns: 1fr 1fr; }
-}
+/* ---- Responsive (main breakpoints consolidated above) ---- */
 @media (max-width: 420px) {
-  .bk-panel { padding: 16px; }
-  .bk-row   { grid-template-columns: 1fr; }
-  .bk-tab   { gap: 3px; }
-  .tm-box   { padding: 28px 20px 24px; }
+  .bk-row { grid-template-columns: 1fr; }
 }
