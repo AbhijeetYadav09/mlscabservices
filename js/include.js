@@ -4,8 +4,8 @@
 // =============================================
 
 (function () {
-  const PHONE   = '+917379164736';
-  const WA_NUM  = '917379164736';
+  const PHONE   = '+917080125582';
+  const WA_NUM  = '917080125582';
   const BUSINESS = 'MLSCABSERVICES';
 
   /* ---- Load a component HTML into a selector ---- */

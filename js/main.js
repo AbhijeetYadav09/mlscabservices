@@ -1,9 +1,9 @@
-ï»¿// =============================================
-//  MLSCABSERVICES â€“ main.js
+// =============================================
+//  MLSCABSERVICES – main.js
 // =============================================
 
-const PHONE  = '+917379164736';
-const WA_NUM = '917379164736';
+const PHONE  = '+917080125582';
+const WA_NUM = '917080125582';
 
 /* ============================================================
    TIME WARNING MODAL
@@ -40,7 +40,7 @@ function isTimeValid(dateVal, timeVal) {
 }
 
 /* ============================================================
-   BOOKING CARD â€” TAB SWITCHING
+   BOOKING CARD — TAB SWITCHING
    ============================================================ */
 function initBookingTabs() {
   var tabs = document.querySelectorAll('.bk-tab');
@@ -58,7 +58,7 @@ function initBookingTabs() {
 }
 
 /* ============================================================
-   BOOKING CARD â€” ONE-WAY / ROUNDTRIP TOGGLE
+   BOOKING CARD — ONE-WAY / ROUNDTRIP TOGGLE
    ============================================================ */
 function initTripToggle() {
   document.querySelectorAll('.bk-tog').forEach(function(btn) {
@@ -111,7 +111,7 @@ function removeCity(btn) {
 }
 
 /* ============================================================
-   BOOKING CARD â€” SUBMIT
+   BOOKING CARD — SUBMIT
    ============================================================ */
 function bookingSubmit(tab) {
   var msg   = '';
