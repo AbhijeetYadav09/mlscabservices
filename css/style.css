@@ -29,12 +29,14 @@ body {
   background: var(--white);
   line-height: 1.6;
   font-size: 16px;
+  transition: background var(--transition), color var(--transition);
 }
 
-a { text-decoration: none; color: inherit; }
+a { text-decoration: none; color: inherit; transition: color var(--transition), opacity var(--transition); }
 ul { list-style: none; }
 img { max-width: 100%; display: block; }
-button { cursor: pointer; border: none; outline: none; }
+button { cursor: pointer; border: none; outline: none; transition: all var(--transition); }
+input, textarea, select { transition: border-color var(--transition), background var(--transition), box-shadow var(--transition); }
 
 .container {
   width: 90%;
@@ -1003,7 +1005,7 @@ section { padding: 70px 0; }
   .section-heading h2 { font-size: 1.6rem; }
   .section-heading p  { font-size: 0.95rem; }
 
-  .page-hero         { padding: 36px 0; }
+  .page-hero         { display: none; }
   .page-hero h1      { font-size: 1.75rem; }
 
   .footer-grid   { grid-template-columns: 1fr 1fr; }
@@ -1418,4 +1420,228 @@ body.nav-open .sticky-whatsapp {
 /* ---- Responsive (main breakpoints consolidated above) ---- */
 @media (max-width: 420px) {
   .bk-row { grid-template-columns: 1fr; }
+}
+
+/* ============================================================
+   MODERN ANIMATIONS — MLSCABSERVICES
+   ============================================================ */
+
+/* ---- Scroll-reveal base ---- */
+.reveal {
+  opacity: 0;
+  will-change: opacity, transform;
+  transition: opacity 0.65s cubic-bezier(0.22,1,0.36,1),
+              transform 0.65s cubic-bezier(0.22,1,0.36,1);
+}
+.reveal-up    { transform: translateY(40px); }
+.reveal-left  { transform: translateX(-50px); }
+.reveal-right { transform: translateX(50px); }
+.reveal-scale { transform: scale(0.88) translateY(20px); }
+
+.reveal.visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Stagger delays */
+.reveal-delay-1 { transition-delay: 0.08s; }
+.reveal-delay-2 { transition-delay: 0.16s; }
+.reveal-delay-3 { transition-delay: 0.24s; }
+.reveal-delay-4 { transition-delay: 0.32s; }
+.reveal-delay-5 { transition-delay: 0.40s; }
+
+/* ---- Hero entrance (on page load) ---- */
+@keyframes heroH1In {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes heroParaIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes heroBadgesIn {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.hero-content h1    { animation: heroH1In 0.75s cubic-bezier(0.22,1,0.36,1) 0.1s both; }
+.hero-content > p   { animation: heroParaIn 0.7s cubic-bezier(0.22,1,0.36,1) 0.25s both; }
+.hero-badges        { animation: heroBadgesIn 0.7s cubic-bezier(0.22,1,0.36,1) 0.4s both; }
+
+/* ---- Floating badges ---- */
+@keyframes floatBadge {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-5px); }
+}
+.hero-badge {
+  animation: floatBadge 3.5s ease-in-out infinite;
+}
+.hero-badge:nth-child(2) { animation-delay: 0.5s; }
+.hero-badge:nth-child(3) { animation-delay: 1.0s; }
+.hero-badge:nth-child(4) { animation-delay: 1.5s; }
+.hero-badge:nth-child(5) { animation-delay: 2.0s; }
+
+/* ---- Booking card entrance ---- */
+@keyframes cardSlideIn {
+  from { opacity: 0; transform: translateX(40px) scale(0.96); }
+  to   { opacity: 1; transform: translateX(0) scale(1); }
+}
+.bk-card { animation: cardSlideIn 0.8s cubic-bezier(0.22,1,0.36,1) 0.35s both; }
+
+/* ---- Pulse ring on sticky buttons ---- */
+@keyframes pulseRing {
+  0%   { transform: scale(1);   opacity: 0.6; }
+  70%  { transform: scale(1.65); opacity: 0; }
+  100% { transform: scale(1.65); opacity: 0; }
+}
+.sticky-call::after,
+.sticky-whatsapp::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  animation: pulseRing 2.2s ease-out infinite;
+  pointer-events: none;
+}
+.sticky-call::after     { background: rgba(245,166,35,0.45); }
+.sticky-whatsapp::after { background: rgba(37,211,102,0.45); }
+.sticky-call,
+.sticky-whatsapp { position: fixed; }   /* ensure position context */
+
+/* ---- Shimmer on primary CTA button ---- */
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
+}
+.cta-section .btn-primary,
+.btn-primary {
+  position: relative;
+  overflow: hidden;
+}
+.cta-section .btn-primary::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg,
+    transparent 40%,
+    rgba(255,255,255,0.35) 50%,
+    transparent 60%);
+  background-size: 200% 100%;
+  animation: shimmer 2.4s linear infinite;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+/* ---- Section heading animated underline ---- */
+.section-heading h2 {
+  position: relative;
+  display: inline-block;
+}
+.section-heading h2::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -6px;
+  transform: translateX(-50%) scaleX(0);
+  width: 60%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary), var(--primary-dark));
+  border-radius: 2px;
+  transition: transform 0.55s cubic-bezier(0.22,1,0.36,1) 0.2s;
+}
+.section-heading.visible h2::after { transform: translateX(-50%) scaleX(1); }
+
+/* ---- Route card animated border ---- */
+.route-card {
+  position: relative;
+  overflow: hidden;
+}
+.route-card::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 4px;
+  background: linear-gradient(180deg, var(--primary) 0%, var(--primary-dark) 100%);
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform 0.4s cubic-bezier(0.22,1,0.36,1);
+}
+.route-card:hover::before { transform: scaleY(1); }
+
+/* ---- Service card icon bounce on hover ---- */
+@keyframes iconBounce {
+  0%,100% { transform: translateY(0) scale(1); }
+  40%     { transform: translateY(-8px) scale(1.12); }
+  60%     { transform: translateY(-4px) scale(1.06); }
+}
+.service-card:hover .service-icon { animation: iconBounce 0.55s ease; }
+
+/* ---- Testimonial card lift ---- */
+.testimonial-card {
+  transition: transform 0.35s cubic-bezier(0.22,1,0.36,1),
+              box-shadow 0.35s cubic-bezier(0.22,1,0.36,1);
+}
+.testimonial-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 48px rgba(0,0,0,0.13);
+}
+
+/* ---- Stats counter number ---- */
+@keyframes countUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.stat-box.visible h3 { animation: countUp 0.5s ease both; }
+
+/* ---- Page-hero text entrance ---- */
+.page-hero h1 { animation: heroH1In 0.75s cubic-bezier(0.22,1,0.36,1) 0.1s both; }
+.page-hero p  { animation: heroParaIn 0.7s cubic-bezier(0.22,1,0.36,1) 0.3s both; }
+
+/* ---- Area tags float-in ---- */
+@keyframes tagPop {
+  from { opacity: 0; transform: scale(0.75); }
+  to   { opacity: 1; transform: scale(1); }
+}
+.area-tag {
+  animation: tagPop 0.4s cubic-bezier(0.34,1.56,0.64,1) both;
+}
+.about-visual.visible .area-tag:nth-child(1)  { animation-delay: 0.05s; }
+.about-visual.visible .area-tag:nth-child(2)  { animation-delay: 0.10s; }
+.about-visual.visible .area-tag:nth-child(3)  { animation-delay: 0.15s; }
+.about-visual.visible .area-tag:nth-child(4)  { animation-delay: 0.20s; }
+.about-visual.visible .area-tag:nth-child(5)  { animation-delay: 0.25s; }
+.about-visual.visible .area-tag:nth-child(6)  { animation-delay: 0.30s; }
+.about-visual.visible .area-tag:nth-child(7)  { animation-delay: 0.35s; }
+.about-visual.visible .area-tag:nth-child(8)  { animation-delay: 0.40s; }
+.about-visual.visible .area-tag:nth-child(9)  { animation-delay: 0.45s; }
+.about-visual.visible .area-tag:nth-child(10) { animation-delay: 0.50s; }
+.about-visual:not(.visible) .area-tag { opacity: 0; }
+
+/* ---- Pricing table row fade-in ---- */
+@keyframes rowFadeIn {
+  from { opacity: 0; transform: translateX(-10px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+.table-wrapper.visible .pricing-table tbody tr {
+  animation: rowFadeIn 0.4s ease both;
+}
+.table-wrapper.visible .pricing-table tbody tr:nth-child(1)  { animation-delay: 0.05s; }
+.table-wrapper.visible .pricing-table tbody tr:nth-child(2)  { animation-delay: 0.10s; }
+.table-wrapper.visible .pricing-table tbody tr:nth-child(3)  { animation-delay: 0.15s; }
+.table-wrapper.visible .pricing-table tbody tr:nth-child(4)  { animation-delay: 0.20s; }
+.table-wrapper.visible .pricing-table tbody tr:nth-child(5)  { animation-delay: 0.25s; }
+.table-wrapper.visible .pricing-table tbody tr:nth-child(6)  { animation-delay: 0.30s; }
+.table-wrapper.visible .pricing-table tbody tr:nth-child(7)  { animation-delay: 0.35s; }
+.table-wrapper.visible .pricing-table tbody tr:nth-child(8)  { animation-delay: 0.40s; }
+.table-wrapper.visible .pricing-table tbody tr:nth-child(9)  { animation-delay: 0.45s; }
+.table-wrapper.visible .pricing-table tbody tr:nth-child(10) { animation-delay: 0.50s; }
+.table-wrapper:not(.visible) .pricing-table tbody tr { opacity: 0; }
+
+/* ---- Reduce motion (accessibility) ---- */
+@media (prefers-reduced-motion: reduce) {
+  .reveal, .reveal-up, .reveal-left, .reveal-right, .reveal-scale,
+  .hero-content h1, .hero-content > p, .hero-badges,
+  .hero-badge, .bk-card, .page-hero h1, .page-hero p,
+  body { animation: none !important; transition: none !important; }
+  .sticky-call::after, .sticky-whatsapp::after { display: none; }
+  .cta-section .btn-primary::after { display: none; }
 }

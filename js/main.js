@@ -1,5 +1,5 @@
-// =============================================
-//  MLSCABSERVICES � main.js
+﻿// =============================================
+//  MLSCABSERVICES � main.js
 // =============================================
 
 const PHONE  = '+917080125582';
@@ -40,7 +40,7 @@ function isTimeValid(dateVal, timeVal) {
 }
 
 /* ============================================================
-   BOOKING CARD � TAB SWITCHING
+   BOOKING CARD � TAB SWITCHING
    ============================================================ */
 function initBookingTabs() {
   var tabs = document.querySelectorAll('.bk-tab');
@@ -58,7 +58,7 @@ function initBookingTabs() {
 }
 
 /* ============================================================
-   BOOKING CARD � ONE-WAY / ROUNDTRIP TOGGLE
+   BOOKING CARD � ONE-WAY / ROUNDTRIP TOGGLE
    ============================================================ */
 function initTripToggle() {
   document.querySelectorAll('.bk-tog').forEach(function(btn) {
@@ -111,7 +111,7 @@ function removeCity(btn) {
 }
 
 /* ============================================================
-   BOOKING CARD � SUBMIT
+   BOOKING CARD � SUBMIT
    ============================================================ */
 function bookingSubmit(tab) {
   var msg   = '';
@@ -343,4 +343,147 @@ document.addEventListener('DOMContentLoaded', function() {
 
   var today = new Date().toISOString().split('T')[0];
   document.querySelectorAll('input[type="date"]').forEach(function(d) { d.min = today; });
+
+  initScrollReveal();
+  initCounterAnimations();
 });
+
+/* ============================================================
+   SCROLL REVEAL — auto-apply classes & observe
+   ============================================================ */
+function initScrollReveal() {
+  if (!('IntersectionObserver' in window)) {
+    // Fallback: just make everything visible
+    document.querySelectorAll('.reveal').forEach(function(el) { el.classList.add('visible'); });
+    return;
+  }
+
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.10, rootMargin: '0px 0px -36px 0px' });
+
+  // Section headings
+  document.querySelectorAll('.section-heading').forEach(function(el) {
+    el.classList.add('reveal', 'reveal-up');
+    observer.observe(el);
+  });
+
+  // Service cards — staggered
+  document.querySelectorAll('.service-card, .service-full-card').forEach(function(el, i) {
+    el.classList.add('reveal', 'reveal-up');
+    el.style.transitionDelay = (i % 3 * 0.13) + 's';
+    observer.observe(el);
+  });
+
+  // Route cards — staggered
+  document.querySelectorAll('.route-card').forEach(function(el, i) {
+    el.classList.add('reveal', 'reveal-up');
+    el.style.transitionDelay = (i % 4 * 0.10) + 's';
+    observer.observe(el);
+  });
+
+  // Testimonial cards — staggered
+  document.querySelectorAll('.testimonial-card').forEach(function(el, i) {
+    el.classList.add('reveal', 'reveal-up');
+    el.style.transitionDelay = (i % 3 * 0.13) + 's';
+    observer.observe(el);
+  });
+
+  // Stat boxes — scale in
+  document.querySelectorAll('.stat-box').forEach(function(el, i) {
+    el.classList.add('reveal', 'reveal-scale');
+    el.style.transitionDelay = (i * 0.10) + 's';
+    observer.observe(el);
+  });
+
+  // About content — slide from left
+  document.querySelectorAll('.about-content').forEach(function(el) {
+    el.classList.add('reveal', 'reveal-left');
+    observer.observe(el);
+  });
+
+  // About visual — slide from right
+  document.querySelectorAll('.about-visual').forEach(function(el) {
+    el.classList.add('reveal', 'reveal-right');
+    observer.observe(el);
+  });
+
+  // Contact info — slide from left
+  document.querySelectorAll('.contact-info').forEach(function(el) {
+    el.classList.add('reveal', 'reveal-left');
+    observer.observe(el);
+  });
+
+  // Contact form card — slide from right
+  document.querySelectorAll('.contact-form-card').forEach(function(el) {
+    el.classList.add('reveal', 'reveal-right');
+    observer.observe(el);
+  });
+
+  // CTA section headings
+  document.querySelectorAll('.cta-section h2, .cta-section p').forEach(function(el, i) {
+    el.classList.add('reveal', 'reveal-up');
+    el.style.transitionDelay = (i * 0.14) + 's';
+    observer.observe(el);
+  });
+
+  // Pricing table
+  document.querySelectorAll('.table-wrapper').forEach(function(el) {
+    el.classList.add('reveal', 'reveal-up');
+    observer.observe(el);
+  });
+
+  // Footer columns
+  document.querySelectorAll('.footer-col, .footer-brand').forEach(function(el, i) {
+    el.classList.add('reveal', 'reveal-up');
+    el.style.transitionDelay = (i * 0.09) + 's';
+    observer.observe(el);
+  });
+
+  // Legal content headings
+  document.querySelectorAll('.legal-content h2, .legal-content h3').forEach(function(el) {
+    el.classList.add('reveal', 'reveal-up');
+    observer.observe(el);
+  });
+}
+
+/* ============================================================
+   COUNTER ANIMATIONS — animate numbers in .stat-box h3
+   ============================================================ */
+function initCounterAnimations() {
+  if (!('IntersectionObserver' in window)) return;
+
+  document.querySelectorAll('.stat-box h3').forEach(function(el) {
+    var raw    = el.textContent.trim();
+    var num    = parseFloat(raw.replace(/[^0-9.]/g, ''));
+    var prefix = raw.replace(/[0-9.,\s].*/g, '');          // e.g. '₹'
+    var suffix = raw.replace(/^[^0-9]*[0-9.,]+/, '');      // e.g. '+', 'K', ' yrs'
+    if (isNaN(num)) return;
+    var hasDecimal = raw.indexOf('.') !== -1;
+    var duration = 1800;
+
+    var counterObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (!entry.isIntersecting) return;
+        counterObserver.unobserve(el);
+        var startTime = null;
+        function step(timestamp) {
+          if (!startTime) startTime = timestamp;
+          var progress = Math.min((timestamp - startTime) / duration, 1);
+          var eased    = 1 - Math.pow(1 - progress, 3);
+          var current  = eased * num;
+          el.textContent = prefix + (hasDecimal ? current.toFixed(1) : Math.round(current)) + suffix;
+          if (progress < 1) requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+      });
+    }, { threshold: 0.5 });
+
+    counterObserver.observe(el);
+  });
+}
