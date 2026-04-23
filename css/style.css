@@ -275,31 +275,49 @@ section { padding: 70px 0; }
 
 .section-heading {
   text-align: center;
-  margin-bottom: 50px;
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
-.section-heading h2 {
-  font-size: 2rem;
-  font-weight: 800;
-  color: var(--secondary);
-  margin-bottom: 12px;
-}
-.section-heading p {
-  color: var(--text-light);
-  font-size: 1.05rem;
-  max-width: 580px;
-  margin: 0 auto;
-}
+
 .section-heading .tag {
   display: inline-block;
-  background: rgba(245,166,35,0.15);
+  background: rgba(245, 166, 35, 0.15);
   color: var(--primary-dark);
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   font-weight: 700;
   padding: 4px 14px;
   border-radius: 50px;
-  margin-bottom: 12px;
   text-transform: uppercase;
   letter-spacing: 1px;
+  margin-bottom: 0.5rem;
+}
+
+.section-heading h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--dark);
+  margin-bottom: 0.5rem;
+  position: relative;
+  display: inline-block;
+}
+
+.section-heading h2::after {
+  content: '';
+  display: block;
+  width: 80px;
+  height: 4px;
+  background: var(--primary);
+  margin: 0.5rem auto 0;
+}
+
+.section-heading p {
+  color: var(--text-light);
+  font-size: 1rem;
+  max-width: 600px;
+  margin: 0.5rem auto 0;
 }
 
 /* ============================================
@@ -524,17 +542,18 @@ section { padding: 70px 0; }
 
 .service-card {
   background: var(--white);
-  border-radius: 12px;
-  padding: 0 0 28px;
-  text-align: center;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
   box-shadow: var(--shadow);
+  padding: 1.5rem;
+  text-align: center;
   transition: transform var(--transition), box-shadow var(--transition);
   border-bottom: 4px solid transparent;
   overflow: hidden;
 }
 .service-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 12px 36px rgba(0,0,0,0.14);
+  transform: translateY(-5px);
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15);
   border-bottom-color: var(--primary);
 }
 
@@ -570,8 +589,8 @@ section { padding: 70px 0; }
   color: var(--primary);
   margin: 0 auto 20px;
 }
-.service-card h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 10px; color: var(--secondary); padding: 0 20px; }
-.service-card p { font-size: 0.93rem; color: var(--text-light); line-height: 1.7; padding: 0 20px; }
+.service-card h3 { font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem; color: var(--dark); padding: 0 20px; }
+.service-card p { font-size: 1rem; color: var(--text-light); line-height: 1.6; padding: 0 20px; }
 
 /* ============================================
    ROUTES
@@ -773,6 +792,9 @@ section { padding: 70px 0; }
   box-shadow: var(--shadow);
   overflow: hidden;
   transition: transform var(--transition);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 .service-full-card:hover { transform: translateY(-6px); }
 .service-card-header {
@@ -796,7 +818,13 @@ section { padding: 70px 0; }
 }
 .service-card-header h3 { color: var(--white); font-size: 1.2rem; font-weight: 700; }
 .service-card-header p { color: #aaa; font-size: 0.88rem; margin-top: 4px; }
-.service-card-body { padding: 28px 32px; }
+.service-card-body { 
+  padding: 28px 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 1;
+}
 .service-features { margin-bottom: 24px; }
 .service-features li {
   display: flex;
